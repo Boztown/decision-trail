@@ -5,7 +5,13 @@ export interface DecisionNode {
   /** Unique identifier for this decision node */
   id: string;
   /** Type of decision being made */
-  type: 'condition' | 'action' | 'api_call' | 'data_lookup' | 'rule_evaluation' | 'custom';
+  type:
+    | "condition"
+    | "action"
+    | "api_call"
+    | "data_lookup"
+    | "rule_evaluation"
+    | "custom";
   /** Human-readable description of the decision */
   description: string;
   /** Timestamp when this decision was made */
@@ -65,7 +71,7 @@ export interface DecisionTrace {
 /**
  * Configuration options for DecisionTracker
  */
-export interface DecisionTrackerConfig {
+export interface DecisionTrailConfig {
   /** Version of the decision logic */
   version: string;
   /** Environment where this is running */
