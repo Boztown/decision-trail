@@ -1,4 +1,4 @@
-import { DecisionTrail } from "../DecisionTrail.ts";
+import { DecisionTrail } from "../DecisionTrail";
 import { DecisionNode, DecisionTrace } from "../types";
 import { printDecisionTree, toMermaidFlowchart } from "../utils";
 
