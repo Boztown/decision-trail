@@ -287,27 +287,6 @@ describe("DecisionTrail", () => {
       });
     });
 
-    describe("trackBusinessRule", () => {
-      it("should track business rule with confidence", () => {
-        const mockRule = jest.fn().mockReturnValue(0.85);
-
-        const result = trail.trackBusinessRule(
-          "fraud_detection_v2",
-          "Calculate fraud score",
-          mockRule,
-          { amount: 1000 },
-          0.9
-        );
-
-        expect(result).toBe(0.85);
-
-        const trace = trail.getTrace();
-        const decision = trace.rootDecision.children[0];
-        expect(decision.type).toBe("rule_evaluation");
-        expect(decision.metadata?.rule_name).toBe("fraud_detection_v2");
-        expect(decision.metadata?.confidence).toBe(0.9);
-      });
-    });
   });
 
   describe("finalize", () => {

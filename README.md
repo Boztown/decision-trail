@@ -10,7 +10,6 @@ Track and audit decision trees in your applications with structured logging and 
 - 🌐 **API Call Tracking** - Specialized support for tracking external API calls and database queries
 - 📊 **Visualization** - Export to Mermaid flowcharts and pretty-print decision trees
 - 🛠️ **TypeScript Support** - Full type safety with comprehensive TypeScript definitions
-- 🎯 **Business Rule Tracking** - Track business rule evaluations with confidence scoring
 
 ## Installation
 
@@ -43,14 +42,6 @@ const result = await trail.trackApiCall(
   '/api/payments/charge'
 );
 
-// Track a business rule
-const discount = trail.trackBusinessRule(
-  'loyalty_discount',
-  'Apply loyalty discount',
-  () => calculateDiscount(customer),
-  { customerId: customer.id },
-  0.95 // confidence score
-);
 
 // Finalize and get the complete trace
 const trace = trail.finalize('completed');
@@ -103,8 +94,6 @@ Track file system operations.
 ##### `trackServiceCall(serviceName, description, serviceCall, endpoint?)`
 Track calls to external services.
 
-##### `trackBusinessRule(ruleName, description, rule, inputs?, confidence?)`
-Track business rule evaluations with optional confidence scoring.
 
 #### Utility Methods
 
@@ -137,7 +126,6 @@ interface DecisionNode {
     api_endpoint?: string;
     error?: string;
     rule_name?: string;
-    confidence?: number;
     service?: string;
     [key: string]: any;
   };

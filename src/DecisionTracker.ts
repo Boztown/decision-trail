@@ -301,27 +301,6 @@ export class DecisionTrail {
     );
   }
 
-  /**
-   * Track a business rule evaluation
-   * @param ruleName - Name of the business rule
-   * @param description - Description of the rule
-   * @param rule - Function implementing the rule
-   * @param inputs - Rule input parameters
-   * @param confidence - Confidence score (0-1)
-   * @returns Rule result
-   */
-  trackBusinessRule<T>(
-    ruleName: string,
-    description: string,
-    rule: () => T,
-    inputs: Record<string, any> = {},
-    confidence?: number
-  ): T {
-    return this.trackSync("rule_evaluation", description, rule, inputs, {
-      rule_name: ruleName,
-      confidence,
-    });
-  }
 
   /**
    * Finalize the trace with a final state

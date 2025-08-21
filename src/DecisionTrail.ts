@@ -218,18 +218,6 @@ export class DecisionTrail {
     );
   }
 
-  trackBusinessRule<T>(
-    ruleName: string,
-    description: string,
-    rule: () => T,
-    inputs: Record<string, any> = {},
-    confidence?: number
-  ): T {
-    return this.trackSync("rule_evaluation", description, rule, inputs, {
-      rule_name: ruleName,
-      confidence,
-    });
-  }
 
   finalize(finalState: string): DecisionTrace {
     this.trace.endTime = new Date();
