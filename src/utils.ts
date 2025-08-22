@@ -34,11 +34,11 @@ export function printDecisionTree(node: DecisionNode, indent: string = ''): void
 }
 
 /**
- * Convert a decision trace to Mermaid flowchart format
- * @param trace - Decision trace to convert
+ * Convert a decision node or trace to Mermaid flowchart format
+ * @param input - Decision trace or root decision node to convert
  * @returns Mermaid flowchart string
  */
-export function toMermaidFlowchart(trace: DecisionTrace): string {
+export function toMermaidFlowchart(input: DecisionTrace | DecisionNode): string {
   const lines: string[] = ['flowchart TD'];
   
   const processNode = (node: DecisionNode, parentId?: string) => {
@@ -59,7 +59,9 @@ export function toMermaidFlowchart(trace: DecisionTrace): string {
     node.children.forEach(child => processNode(child, node.id));
   };
   
-  processNode(trace.rootDecision);
+  // Handle both DecisionTrace and DecisionNode inputs
+  const rootNode = 'rootDecision' in input ? input.rootDecision : input;
+  processNode(rootNode);
   
   lines.push('    classDef error fill:#ffebee,stroke:#f44336');
   lines.push('    classDef condition fill:#e3f2fd,stroke:#2196f3');

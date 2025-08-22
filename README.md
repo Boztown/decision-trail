@@ -165,6 +165,33 @@ console.log(printDecisionTree(trace.rootDecision));
 const mermaidCode = toMermaidFlowchart(trace.rootDecision);
 ```
 
+### Example Mermaid Chart
+
+For an order processing workflow, the generated Mermaid chart would look like:
+
+```mermaid
+flowchart TD
+    root{"Processing order-processing-456"}
+    node_1{"Validate order data"}
+    root --> node_1
+    node_2(("Process payment via Stripe"))
+    root --> node_2
+    node_3[("Update inventory count")]
+    root --> node_3
+    node_4["Send order confirmation email"]
+    root --> node_4
+    classDef error fill:#ffebee,stroke:#f44336
+    classDef condition fill:#e3f2fd,stroke:#2196f3
+    classDef action fill:#e8f5e8,stroke:#4caf50
+    classDef api_call fill:#fff3e0,stroke:#ff9800
+```
+
+Different node types are represented with different shapes:
+- **Conditions** (blue): Diamond shapes `{}`
+- **API Calls** (orange): Double circles `(())`
+- **Data Lookups** (orange): Stadium shapes `[()]`
+- **Actions** (green): Rectangle shapes `[]`
+
 ## Use Cases
 
 - **Audit Trails** - Track decision-making processes for compliance and debugging
